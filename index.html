@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoFlow AI - আল্টিমেট ভিডিও অটোমেশন ও ইউটিউব পাবলিশিং স্টুডিও</title>
+  <title>AutoFlow AI - স্বয়ংক্রিয় ভিডিও তৈরি ও ইউটিউব পাবলিশিং প্ল্যাটফর্ম</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,247 +15,352 @@
         extend: {
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', '"Hind Siliguri"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
           }
         }
       }
     }
   </script>
   <style>
-    .neon-glow { box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.35); }
+    .glow-effect {
+      box-shadow: 0 0 60px -15px rgba(99, 102, 241, 0.4);
+    }
   </style>
 </head>
-<body class="bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200 font-sans flex flex-col antialiased">
+<body class="bg-slate-50 dark:bg-[#070a12] text-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-200 font-sans flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
-  <div class="bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-800 text-white text-xs py-2 px-4 flex items-center justify-between font-medium shadow-sm">
-    <div class="flex items-center gap-2 mx-auto">
-      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span>AutoFlow AI স্টুডিও লাইভ: Gemini 2.5 • Claude 3.5 Sonnet • ChatGPT-4o • vidIQ SEO Engine • YouTube Data API v3</span>
-    </div>
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-800 text-white text-xs py-2 px-4 text-center font-semibold">
+    🚀 নতুন আপডেট: Gemini 2.5, Claude 3.5 এবং vidIQ SEO স্কোরিং সহ সম্পূর্ণ অটোমেশন এখন উন্মুক্ত!
   </div>
 
-  <div class="flex-1 flex overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f1422] flex flex-col flex-shrink-0">
-      <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800 gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md font-extrabold text-lg">
-          AF
-        </div>
-        <div>
-          <h1 class="font-extrabold text-base tracking-tight flex items-center gap-1.5">
-            AutoFlow <span class="text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold">PRO</span>
-          </h1>
-          <p class="text-[11px] text-slate-500">এআই ভিডিও অটোমেশন</p>
-        </div>
+  <!-- Navbar -->
+  <header class="h-20 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#070a12]/80 backdrop-blur-lg sticky top-0 z-40 px-6 sm:px-12 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-indigo-500/30">
+        AF
+      </div>
+      <div>
+        <h1 class="font-extrabold text-lg tracking-tight flex items-center gap-1.5">
+          AutoFlow <span class="text-xs px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200 dark:border-indigo-800">AI</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Center Nav Links -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
+      <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">ফিচারসমূহ</a>
+      <a href="#pipeline" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">কাজের পদ্ধতি</a>
+      <a href="#vidiq-seo" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">vidIQ এসইও</a>
+      <a href="#faq" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">সাধারণ প্রশ্ন</a>
+    </nav>
+
+    <!-- Right Action & Theme Toggle -->
+    <div class="flex items-center gap-3.5">
+      <button id="theme-btn" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center justify-center font-bold text-sm" title="থিম পরিবর্তন">
+        ☀️ / 🌙
+      </button>
+
+      <a href="#app-demo" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-lg shadow-indigo-500/25 transition flex items-center gap-2">
+        <span>স্টুডিও খুলুন</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-24 px-6 overflow-hidden">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/20 to-pink-600/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto text-center space-y-6 relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/80 text-indigo-600 dark:text-indigo-400 text-xs font-bold shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+        <span>সম্পূর্ণ এন্ড-টু-এন্ড অটোমেশন • ১ ক্লিকে তৈরি ও আপলোড</span>
       </div>
 
-      <nav class="flex-1 px-3 py-4 space-y-1.5">
-        <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
-          <span>ভিডিও স্টুডিও</span>
-        </button>
-        <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
-          <span>vidIQ SEO অডিটর</span>
-          <span class="ml-auto text-[10px] bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded-full font-bold">98/100</span>
-        </button>
-        <button class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
-          <span>ভিডিও লাইব্রেরি</span>
-        </button>
-      </nav>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight sm:leading-tight">
+        ভিডিও বানাবে এআই, <br class="hidden sm:inline">
+        সরাসরি আপলোড হবে <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">ইউটিউবে!</span>
+      </h1>
 
-      <div class="p-3.5 m-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 text-xs space-y-1.5">
-        <div class="flex items-center justify-between">
-          <span class="font-bold text-slate-800 dark:text-slate-200">YouTube Channel</span>
-          <span class="text-[10px] bg-emerald-500/10 text-emerald-500 font-bold px-2 py-0.5 rounded-full">Connected</span>
-        </div>
-        <p class="text-[11px] text-slate-500">আপলোড মোড: <strong class="text-indigo-500">Unlisted</strong></p>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        শুধু টপিক লিখে দিন। স্ক্রিপ্ট লেখা, প্রাকৃতিক বাংলা ভয়েসওভার, ডায়নামিক সাবটাইটেল, vidIQ এসইও স্কোরিং এবং সরাসরি YouTube-এ Unlisted হিসেবে ভিডিও আপলোড হবে এক পাইপলাইনে।
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a href="#app-demo" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold text-sm shadow-xl shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition flex items-center justify-center gap-2.5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <span>ফ্রি ভিডিও অটোমেশন শুরু করুন</span>
+        </a>
+
+        <a href="https://github.com/mazahar007/AutoFlowAI" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 font-bold text-xs transition flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>গিটহাব সোর্স কোড (GitHub)</span>
+        </a>
       </div>
-    </aside>
 
-    <!-- Main Workspace -->
-    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      <header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0f1422]/90 backdrop-blur-md sticky top-0 z-20 px-6 flex items-center justify-between">
+      <!-- Trust Badges -->
+      <div class="pt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-semibold text-slate-500 dark:text-slate-400">
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> কোনো সফটওয়্যার ইনস্টল ছাড়া</span>
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> ১০০% প্রফেশনাল বাংলা কণ্ঠ</span>
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> সরাসরি Unlisted আপলোড</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 3D Product Mockup Showcase -->
+  <section class="px-6 pb-24" id="app-demo">
+    <div class="max-w-6xl mx-auto rounded-3xl bg-slate-900 border border-slate-800 p-6 sm:p-10 shadow-2xl glow-effect text-white">
+      <div class="flex flex-col sm:flex-row items-center justify-between pb-6 border-b border-slate-800 gap-4">
         <div>
-          <h2 class="font-extrabold text-lg text-slate-900 dark:text-white">AutoFlow ক্রিয়েশন স্টুডিও</h2>
-          <p class="text-xs text-slate-500">টপিক থেকে ভিডিও, ভয়েস, vidIQ এসইও এবং সরাসরি ইউটিউব আনলিস্টেড আপলোড</p>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-400 font-bold">লাইভ প্রিভিউ ড্যাশবোর্ড</span>
+          <h2 class="text-xl sm:text-2xl font-black mt-2">অল-ইন-ওয়ান ভিডিও ক্রিয়েটর ফ্রেমওয়ার্ক</h2>
         </div>
-
         <div class="flex items-center gap-3">
-          <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-2 text-xs font-bold">
-            <span>☀️ / 🌙 থিম সুইচ</span>
-          </button>
+          <span class="text-xs text-emerald-400 flex items-center gap-1.5 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            YouTube API Connected
+          </span>
         </div>
-      </header>
+      </div>
 
-      <div class="p-6 max-w-7xl w-full mx-auto space-y-6">
-        
-        <!-- AI Model Engine -->
-        <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-          <h3 class="font-bold text-sm">এআই মডেল ইঞ্জিন নির্বাচন (AI Script & Hook Engine)</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <label class="model-opt border-2 border-indigo-600 bg-indigo-50/40 dark:bg-indigo-950/30 rounded-xl p-3.5 cursor-pointer flex items-center gap-3">
-              <input type="radio" name="ai-engine" value="gemini" checked class="text-indigo-600">
+      <!-- Grid Inside Mockup -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 items-center">
+        <!-- Left: Quick interactive Generator -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="p-5 rounded-2xl bg-slate-800/60 border border-slate-700/60 space-y-3">
+            <label class="block text-xs font-bold text-slate-300">১. ভিডিও টপিক লিখুন</label>
+            <input id="demo-topic" type="text" value="মহাকাশের এমন ৩টি রহস্য যা বিজ্ঞান এখনো ব্যাখ্যা করতে পারেনি" class="w-full text-xs p-3 rounded-xl bg-slate-900 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white font-medium">
+            
+            <div class="grid grid-cols-2 gap-3 text-xs pt-1">
               <div>
-                <p class="font-bold text-xs text-indigo-600 dark:text-indigo-400">Google Gemini 2.5 Flash</p>
-                <p class="text-[11px] text-slate-500">দ্রুততম ও ফ্রি কোটা</p>
-              </div>
-            </label>
-            <label class="model-opt border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl p-3.5 cursor-pointer flex items-center gap-3">
-              <input type="radio" name="ai-engine" value="claude" class="text-indigo-600">
-              <div>
-                <p class="font-bold text-xs text-orange-500">Anthropic Claude 3.5 Sonnet</p>
-                <p class="text-[11px] text-slate-500">প্রাকৃতিক আকর্ষণীয় হুক</p>
-              </div>
-            </label>
-            <label class="model-opt border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 rounded-xl p-3.5 cursor-pointer flex items-center gap-3">
-              <input type="radio" name="ai-engine" value="chatgpt" class="text-indigo-600">
-              <div>
-                <p class="font-bold text-xs text-emerald-500">OpenAI ChatGPT-4o</p>
-                <p class="text-[11px] text-slate-500">ভাইরাল স্টোরিটেলিং</p>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          <!-- Left Controls (7 cols) -->
-          <div class="lg:col-span-7 p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
-              <h3 class="font-bold text-base">ভিডিও কনফিগারেশন</h3>
-              <button id="btn-quick-fill" class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-semibold">নমুনা টপিক যোগ করুন ✨</button>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold mb-1.5">ভিডিওর টপিক বা বিষয়বস্তু (Topic Prompt)</label>
-              <textarea id="input-topic" rows="3" placeholder="যেমন: মহাকাশের এমন ৩টি রহস্য যা বিজ্ঞান এখনো সমাধান করতে পারেনি..." class="w-full text-xs p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div>
-                <label class="block font-semibold mb-1.5">ভিডিও ফ্রেম ও সাইজ</label>
-                <select class="w-full font-medium p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
-                  <option>📱 Shorts / Reels / TikTok (9:16 Vertical)</option>
-                  <option>💻 YouTube Regular Landscape (16:9)</option>
+                <label class="block text-slate-400 font-semibold mb-1">এআই মডেল</label>
+                <select class="w-full p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">
+                  <option>Google Gemini 2.5 Flash</option>
+                  <option>Claude 3.5 Sonnet</option>
+                  <option>OpenAI ChatGPT-4o</option>
                 </select>
               </div>
               <div>
-                <label class="block font-semibold mb-1.5">ভয়েস আর্টিস্ট (Edge-TTS)</label>
-                <select id="select-voice" class="w-full font-medium p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
-                  <option value="pradeep">🇧🇩 প্রদীপ (বাংলা পুরুষ কণ্ঠ)</option>
-                  <option value="nabanita">🇧🇩 নবনিতা (বাংলা নারী কণ্ঠ)</option>
+                <label class="block text-slate-400 font-semibold mb-1">ভয়েস আর্টিস্ট</label>
+                <select class="w-full p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">
+                  <option>প্রদীপ (বাংলা পুরুষ)</option>
+                  <option>নবনিতা (বাংলা নারী)</option>
                 </select>
               </div>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-red-50/50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 flex items-start gap-3 text-xs">
-              <input type="checkbox" checked class="mt-1 w-4 h-4 text-red-600 rounded">
-              <div>
-                <p class="font-bold text-red-700 dark:text-red-400">YouTube Data API দিয়ে Unlisted মোডে আপলোড করুন</p>
-                <p class="text-slate-500 text-[11px] mt-0.5">ভিডিওটি পাবলিক হবে না, চ্যানেলে আনলিস্টেড লিংক হিসেবে সংরক্ষিত থাকবে।</p>
-              </div>
-            </div>
-
-            <button id="btn-start" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white font-bold text-sm shadow-xl hover:scale-[1.01] active:scale-[0.99] transition">
-              সম্পূর্ণ অটোমেশন শুরু করুন (Create + vidIQ SEO + YouTube Upload)
+            <button id="btn-demo-generate" class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 font-bold text-xs hover:opacity-95 transition mt-2 shadow-lg">
+              জেনারেট এবং আপলোড করুন (Unlisted) ⚡
             </button>
           </div>
 
-          <!-- Right: Live Mockup, vidIQ & YouTube (5 cols) -->
-          <div class="lg:col-span-5 space-y-5">
-            <!-- Smartphone Video Mockup -->
-            <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col items-center">
-              <div class="w-full flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
-                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400">লাইভ ফ্রেম প্রিভিউ</h4>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-bold">লাইভ সিঙ্ক</span>
-              </div>
-
-              <div id="phone-box" class="relative w-[230px] h-[410px] rounded-3xl bg-slate-900 border-4 border-indigo-500 neon-glow overflow-hidden flex flex-col justify-between p-4 text-center">
-                <div class="flex justify-between items-center text-[10px] text-white/80 z-10">
-                  <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Shorts 9:16</span>
-                  <span id="model-tag" class="px-1.5 py-0.5 bg-black/60 rounded text-[9px] font-mono text-indigo-300">Gemini 2.5</span>
-                </div>
-
-                <div class="my-auto z-10 px-2 space-y-2">
-                  <div class="inline-block text-[9px] px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 font-black uppercase">
-                    Viral Hook
-                  </div>
-                  <h3 id="preview-hook" class="text-base font-extrabold text-amber-300 drop-shadow leading-snug">
-                    মহাকাশের ৩টি গোপন রহস্য
-                  </h3>
-                  <p id="preview-subs" class="text-[11px] text-slate-100 drop-shadow line-clamp-3">
-                    আমরা যা দেখি মহাবিশ্বের মাত্র ৫%! বাকি ৯৫% জুড়ে রয়েছে অজানা ডার্ক এনার্জি...
-                  </p>
-                </div>
-
-                <div class="z-10 pt-2 border-t border-white/10 flex items-center justify-between text-white text-xs">
-                  <span id="preview-voice" class="text-[10px] text-white/80">প্রদীপ (বাংলা)</span>
-                  <button id="btn-play" class="w-7 h-7 rounded-full bg-white text-slate-900 flex items-center justify-center font-bold">▶</button>
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-black z-0"></div>
-              </div>
-            </div>
-
-            <!-- vidIQ SEO Score Card -->
-            <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
-              <div class="flex items-center justify-between">
-                <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400">vidIQ SEO স্কোরকার্ড</h4>
-                <span id="vidiq-score" class="text-xl font-black text-emerald-500">95.0 / 100</span>
-              </div>
-              <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div class="bg-emerald-500 h-full w-[95%]"></div>
-              </div>
-              <div class="flex justify-between text-[11px] text-slate-400">
-                <span>প্রেডিক্টেড CTR: 13.4%</span>
-                <span>টাইটেল সার্চ ভলিউম: High</span>
-              </div>
-            </div>
-
-            <!-- YouTube Metadata Box -->
-            <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3.5 text-xs">
-              <p class="font-bold text-red-500 uppercase">YouTube Unlisted মেটাডাটা</p>
+          <!-- vidIQ stats card preview -->
+          <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/40 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-black">V</div>
               <div>
-                <p class="text-[10px] text-slate-400 font-semibold">ভিডিও টাইটেল:</p>
-                <p id="yt-title" class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold mt-1">মহাকাশের ৩টি গোপন রহস্য যা বিজ্ঞান এখনো সমাধান করতে পারেনি! 🚀 #Shorts</p>
+                <p class="font-bold text-slate-200">vidIQ এসইও স্কোর</p>
+                <p class="text-[11px] text-slate-400">টাইটেল ও ট্যাগ অপটিমাইজেশন</p>
               </div>
-              <a href="https://youtu.be/unlisted_demo" target="_blank" class="block text-center py-2.5 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition">
-                YouTube Unlisted ভিডিও দেখুন (Open Link)
-              </a>
+            </div>
+            <div class="text-right">
+              <span class="text-lg font-black text-emerald-400">95.0</span>
+              <span class="text-slate-500"> / 100</span>
             </div>
           </div>
         </div>
 
+        <!-- Right: Mobile Shorts Mockup -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-[210px] h-[375px] rounded-3xl bg-black border-4 border-slate-700 overflow-hidden shadow-2xl flex flex-col justify-between p-3.5 text-center">
+            <div class="flex justify-between items-center text-[9px] text-white/70 z-10">
+              <span class="text-red-500 font-bold">● Shorts 9:16</span>
+              <span>00:30</span>
+            </div>
+
+            <div class="my-auto z-10 space-y-1.5 px-1">
+              <span class="text-[8px] px-2 py-0.5 rounded-full bg-amber-400 text-black font-black uppercase">Viral Hook</span>
+              <h4 id="demo-mock-title" class="text-xs font-black text-amber-300 drop-shadow">মহাকাশের ৩টি গোপন রহস্য</h4>
+              <p class="text-[9px] text-slate-200 line-clamp-3">আমরা যা দেখি মহাবিশ্বের মাত্র ৫%! বাকি ৯৫% জুড়ে রয়েছে অজানা ডার্ক এনার্জি...</p>
+            </div>
+
+            <div class="z-10 pt-1.5 border-t border-white/10 flex items-center justify-between text-[10px]">
+              <span class="text-slate-400">প্রদীপ (বাংলা)</span>
+              <span class="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center text-[10px] font-bold">▶</span>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-black z-0"></div>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
+  </section>
+
+  <!-- 4-Step Pipeline Section -->
+  <section class="py-20 px-6 bg-white dark:bg-[#0c101d] border-t border-b border-slate-200 dark:border-slate-800" id="pipeline">
+    <div class="max-w-6xl mx-auto space-y-14">
+      <div class="text-center space-y-3">
+        <span class="text-xs px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold">স্বয়ংক্রিয় কার্যপ্রণালী</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">কীভাবে কাজ করে AutoFlow AI?</h2>
+        <p class="text-sm text-slate-500 max-w-xl mx-auto">টপিক দেওয়া থেকে শুরু করে চ্যানেলে ভিডিও পৌঁছানো পর্যন্ত প্রতিটি ধাপ সম্পূর্ণ অটোমেটেড।</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-sm">১</div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">এআই স্ক্রিপ্ট ও হুক</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Gemini 2.5 বা Claude দিয়ে প্রথম ৩ সেকেন্ডের জন্য আকর্ষণীয় ভাইরাল হুক ও সাবটাইটেল তৈরি হয়।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-black text-sm">২</div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">প্রাকৃতিক ভয়েসওভার</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Edge-TTS নিউরাল মডেলের মাধ্যমে স্পষ্ট বাংলা পুরুষ (প্রদীপ) ও নারী (নবনিতা) কণ্ঠে ভয়েস রেন্ডার হয়।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-sm">৩</div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">vidIQ SEO স্কোরিং</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">ভাইরাল কিওয়ার্ড, হ্যাশট্যাগ ও থাম্বনেইল ক্যাপশন হিসাব করে ৯৫+ এসইও স্কোর নিশ্চিত করা হয়।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-black text-sm">৪</div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white">YouTube Unlisted আপলোড</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">অফিসিয়াল YouTube Data API দিয়ে ভিডিও স্বয়ংক্রিয়ভাবে আপনার চ্যানেলে আনলিস্টেড হয়ে জমা হবে।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- vidIQ SEO Detailed Section -->
+  <section class="py-20 px-6" id="vidiq-seo">
+    <div class="max-w-6xl mx-auto space-y-12">
+      <div class="text-center space-y-3">
+        <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 font-bold border border-amber-500/20">SEO ইঞ্জিন</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">vidIQ অপটিমাইজড মেটাডাটা</h2>
+        <p class="text-sm text-slate-500 max-w-xl mx-auto">ভিডিও বানানোর পাশাপাশি এর ভিউ নিশ্চিত করতে উচ্চ সার্চ ভলিউম ট্যাগ ও ক্লিক-থ্রু রেট প্রেডিকশন।</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-black text-sm">📈</div>
+          <h4 class="font-bold text-base">হাই CTR থাম্বনেইল হুক</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">দর্শকের নজর কাড়ার জন্য আকর্ষণীয় কালার কনট্রাস্ট ও বোল্ড বাংলা টেক্সট প্রম্পট তৈরি করে।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center font-black text-sm">🔍</div>
+          <h4 class="font-bold text-base">সার্চ ভলিউম অপটিমাইজড ট্যাগ</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">ইউটিউবে মানুষ কী লিখে খুঁজছে তার ওপর ভিত্তি করে সেরা কীওয়ার্ড ও হ্যাশট্যাগ নির্বাচন।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center font-black text-sm">🎯</div>
+          <h4 class="font-bold text-base">৯৫+ এসইও স্কোর প্রিভিউ</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">আপলোডের আগেই vidIQ অ্যালগরিদম অনুযায়ী ভিডিওর এসইও স্কোর ও র‍্যাংকিং পারফরম্যান্স জানা যায়।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="py-20 px-6 bg-slate-100/60 dark:bg-[#0c101d]" id="features">
+    <div class="max-w-6xl mx-auto space-y-12">
+      <div class="text-center space-y-3">
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">সব সেরা ফিচার এক প্ল্যাটফর্মে</h2>
+        <p class="text-sm text-slate-500">ক্রিয়েটরদের সময় বাঁচিয়ে কোয়ালিটি কনটেন্ট বানানোর আধুনিক সমাধান।</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div class="text-2xl mb-2">⚡</div>
+          <h4 class="font-bold text-base">সুপারফাস্ট রেন্ডারিং</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">প্রতিটি ৩০ সেকেন্ডের ভিডিও মাত্র ১৫-২০ সেকেন্ডে রেন্ডার হয়ে প্রস্তুত হয়ে যায়।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div class="text-2xl mb-2">🎨</div>
+          <h4 class="font-bold text-base">কালপুরুষ বাংলা ফন্ট</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">ভিডিওতে প্রফেশনাল কালপুরুষ ফন্টে সোনালী ও সাদা সাবটাইটেল ক্রিস্টাল ক্লিয়ার দেখা যায়।</p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-2">
+          <div class="text-2xl mb-2">🔒</div>
+          <h4 class="font-bold text-base">নিরাপদ আনলিস্টেড মোড</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">ভিডিও সরাসরি পাবলিক হয় না, ফলে আপনি নিজে দেখে নেওয়ার পর ইচ্ছেমতো সময়ে পাবলিশ করতে পারবেন।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 px-6" id="faq">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <div class="text-center space-y-2">
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">সাধারণ কিছু প্রশ্নোত্তর (FAQ)</h2>
+        <p class="text-sm text-slate-500">AutoFlow AI ব্যবহারের সাধারণ নিয়মাবলী।</p>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 space-y-1.5">
+          <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">১. ভিডিও কি সরাসরি ইউটিউবে পাবলিক হয়ে যাবে?</h4>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed">না। ভিডিওটি সবসময় 'Unlisted' বা অপ্রকাশিত অবস্থায় আপলোড হয়। আপনি ভিডিও দেখে সন্তুষ্ট হলে তবেই নিজের ইউটিউব স্টুডিও থেকে এক ক্লিকে পাবলিক করতে পারবেন।</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 space-y-1.5">
+          <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">২. ভয়েসওভারের কোয়ালিটি কেমন হবে?</h4>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed">আমরা Microsoft Edge-এর সর্বশেষ নিউরাল টিটিএস ব্যবহার করি। বাংলা প্রদীপ ও নবনিতা কণ্ঠ রোবোটিক নয়, বরং সম্পূর্ণ মানুষের মতো স্বাভাবিক ও পরিষ্কার শোনা যায়।</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 space-y-1.5">
+          <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">৩. এটি ব্যবহার করতে কি কোনো খরচ আছে?</h4>
+          <p class="text-slate-500 dark:text-slate-400 leading-relaxed">গুগল জেমিনি এপিআই এবং এজ-টিটিএস প্রতিদিন বিনামূল্যে প্রচুর রিকোয়েস্ট অফার করে, ফলে এটি সম্পূর্ণ বিনামূল্যে চালানো সম্ভব।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#070a12] py-8 px-6 text-center text-xs text-slate-500">
+    <p>© ২০২৬ AutoFlow AI • এন্ড-টু-এন্ড ভিডিও অটোমেশন স্টুডিও। সর্বস্বত্ব সংরক্ষিত।</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 p-4 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-2xl text-xs font-semibold flex items-center gap-2 transform translate-y-24 opacity-0 transition-all duration-300">
+    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+    <span id="toast-text">সফলভাবে সম্পন্ন হয়েছে!</span>
   </div>
 
   <script>
-    const html = document.documentElement;
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      html.classList.toggle('dark');
+    // Theme Switcher
+    const htmlElem = document.documentElement;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      htmlElem.classList.toggle('dark');
+      showToast(htmlElem.classList.contains('dark') ? 'ডার্ক মোড সক্রিয় 🌙' : 'লাইট মোড সক্রিয় ☀️');
     });
 
-    document.querySelectorAll('input[name="ai-engine"]').forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        document.querySelectorAll('.model-opt').forEach(m => {
-          m.classList.remove('border-indigo-600', 'bg-indigo-50/40', 'dark:bg-indigo-950/30');
-          m.classList.add('border-slate-200', 'dark:border-slate-700');
-        });
-        radio.closest('.model-opt').classList.add('border-indigo-600', 'bg-indigo-50/40', 'dark:bg-indigo-950/30');
-        document.getElementById('model-tag').textContent = radio.value === 'gemini' ? 'Gemini 2.5' : (radio.value === 'claude' ? 'Claude 3.5' : 'ChatGPT-4o');
-      });
-    });
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-text').textContent = msg;
+      t.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => { t.classList.add('translate-y-24', 'opacity-0'); }, 2500);
+    }
 
-    document.getElementById('select-voice').addEventListener('change', (e) => {
-      document.getElementById('preview-voice').textContent = e.target.options[e.target.selectedIndex].text.split(' ')[1] + " (বাংলা)";
-    });
-
-    document.getElementById('btn-quick-fill').addEventListener('click', () => {
-      document.getElementById('input-topic').value = "মহাকাশের এমন ৩টি রহস্য যা বিজ্ঞান এখনো সমাধান করতে পারেনি";
-    });
-
-    document.getElementById('btn-start').addEventListener('click', () => {
-      const topic = document.getElementById('input-topic').value.trim() || "মহাকাশের এমন ৩টি রহস্য যা বিজ্ঞান এখনো সমাধান করতে পারেনি";
-      document.getElementById('preview-hook').textContent = topic;
-      document.getElementById('yt-title').textContent = `${topic} 🚀 #Shorts #SpaceFacts`;
-      alert('সফল! এআই স্ক্রিপ্ট, vidIQ স্কোর ও আনলিস্টেড ইউটিউব মেটাডাটা আপডেট হয়েছে।');
+    // Mock Demo Action
+    document.getElementById('btn-demo-generate').addEventListener('click', () => {
+      const topic = document.getElementById('demo-topic').value;
+      document.getElementById('demo-mock-title').textContent = topic;
+      showToast('🎉 ডেমো সিমুলেশন সম্পন্ন! vidIQ স্কোর ও আনলিস্টেড লিঙ্ক রেডি।');
     });
   </script>
 </body>
