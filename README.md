@@ -1,23 +1,17 @@
-# AutoFlow AI — YouTube Automation Studio
+# AutoFlowAI - AI Video Automation, vidIQ SEO & YouTube Uploader
+An all-in-one web automation platform that generates video scripts, voiceovers, vidIQ SEO tags/scores, and uploads directly to YouTube in Unlisted mode.
 
-Research, script, voice, video, thumbnail, and upload for YouTube — in one pipeline, with a human approve step before anything goes public.
+## Features
+- Multi-Model AI Engine (Gemini 2.5 Flash, Claude 3.5 Sonnet, ChatGPT-4o)
+- Edge-TTS Natural AI Voiceover (Pradeep & Nabanita Bangla)
+- vidIQ SEO Score Predictor (Title impact, tags, predicted CTR)
+- YouTube Data API v3 OAuth Direct Upload (Unlisted mode)
+- Dark and Light mode responsive dashboard
 
-**Tagline:** Research to upload — with a human in the loop.
-
-**First proof channel:** American Garage Gold — @AmericanGarageGold
-
-## The rule
-
-80% automation + 20% human approval. Never auto-publish without the user pressing Approve. Never more than 2 uploads per day per channel by default.
-
-## Status
-
-Design phase — see [Full-Automation-Site-Design-Prompt.md](Full-Automation-Site-Design-Prompt.md). That file is the copy-paste build prompt for Claude / ChatGPT, plus the full spec (pages, 8-stage pipeline, data model, integrations, pricing DRAFT, Definition of Done).
-
-Planned stack: Next.js 15 + TypeScript + Tailwind v4, Supabase (Auth + Postgres + Storage + RLS), Vercel. Video rendering: FFmpeg worker pattern.
-
-## Pipeline (8 stages)
-
-research → script → fact-check → voice → render → QA → publish-pack → upload-ready
-
-Uploads stay manual by default. YouTube Data API upload is behind an explicit Approve + OAuth only.
+## Deploy to Vercel
+1. Import repository to Vercel
+2. Add Environment Variables:
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+   - `GEMINI_API_KEY`
+3. Hit Deploy!
