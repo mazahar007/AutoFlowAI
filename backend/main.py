@@ -68,12 +68,14 @@ async def generate_video_api(req: VideoRequest):
         "predicted_ctr": ctr
     }
 
-    yt_link = f"https://youtu.be/unlisted_{unique_id}"
-
+    # HONESTY NOTE (fix pack 2026-11-09): the score / CTR above are
+    # calculated from topic keywords, NOT measured by vidIQ, and no
+    # YouTube upload code exists yet — never return a fake youtu.be link.
     return {
         "status": "success",
+        "demo": True,
         "package": package,
-        "youtube_unlisted_url": yt_link
+        "youtube_unlisted_url": None
     }
 
 @app.get("/api/health")

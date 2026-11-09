@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 
+// Backend URL: set NEXT_PUBLIC_API_URL in Vercel once the FastAPI backend
+// is hosted somewhere (Render / Railway / VPS). Until then the studio
+// runs in DEMO mode — Generate shows an honest error, not a fake score.
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 export default function AutoFlowStudio() {
   const [topic, setTopic] = useState('মহাকাশের এমন ৩টি রহস্য যা বিজ্ঞান এখনো ব্যাখ্যা করতে পারেনি');
   const [engine, setEngine] = useState('gemini');
@@ -9,21 +14,22 @@ export default function AutoFlowStudio() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  // Results State
-  const [vidiqScore, setVidiqScore] = useState(94.5);
-  const [predictedCtr, setPredictedCtr] = useState('13.4%');
+  // Results State — start EMPTY. Scores are DEMO placeholders until a real
+  // vidIQ / scoring integration exists. Never invent a score on failure.
+  const [vidiqScore, setVidiqScore] = useState(null);
+  const [predictedCtr, setPredictedCtr] = useState(null);
   const [ytTitle, setYtTitle] = useState('মহাকাশের ৩টি গোপন রহস্য যা বিজ্ঞান এখনো সমাধান করতে পারেনি! 🚀 #Shorts');
   const [ytTags, setYtTags] = useState(['#SpaceFacts', '#ScienceBangla', '#ViralShorts', '#DarkMatter']);
-  const [unlistedUrl, setUnlistedUrl] = useState('https://youtu.be/unlisted_demo');
+  const [unlistedUrl, setUnlistedUrl] = useState(null);
+  const [apiError, setApiError] = useState('');
 
   // Dynamic Backend Fetch Handler
   const handleGenerate = async () => {
     setLoading(true);
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+    setApiError('');
 
     try {
-      const endpoint = backendUrl ? `${backendUrl}/api/generate-video` : '/api/generate';
-      const res = await fetch(endpoint, {
+      const res = await fetch(`${API_BASE}/api/generate-video`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -37,16 +43,16 @@ export default function AutoFlowStudio() {
 
       const data = await res.json();
       if (data && data.package) {
-        setVidiqScore(data.package.vidiq_seo_score || 94.5);
-        setPredictedCtr(data.package.predicted_ctr || '13.4%');
+        setVidiqScore(data.package.vidiq_seo_score ?? null);
+        setPredictedCtr(data.package.predicted_ctr ?? null);
         setYtTitle(data.package.youtube_title || `${topic} 🚀 #Shorts`);
         if (data.package.youtube_tags) setYtTags(data.package.youtube_tags);
         if (data.youtube_unlisted_url) setUnlistedUrl(data.youtube_unlisted_url);
       }
     } catch (err) {
-      // Local fallback calculation
-      setYtTitle(`${topic} 🚀 #Shorts #SpaceFacts`);
-      setVidiqScore(95.0);
+      // Honest failure: no fake score. Backend runs only on localhost:8000
+      // until it is hosted — see NEXT_PUBLIC_API_URL above.
+      setApiError('ব্যাকএন্ডে সংযোগ হয়নি — ব্যাকএন্ড এখনো হোস্ট করা হয়নি (localhost:8000)। এটা ডেমো মোড।');
     } finally {
       setLoading(false);
     }
@@ -73,7 +79,7 @@ export default function AutoFlowStudio() {
               AF
             </div>
             <div>
-              <h1 className="font-extrabold text-base tracking-tight">AutoFlow <span className="text-xs text-indigo-500 font-bold">Studio</span></h1>
+              <h1 className="font-extrabold text-base tracking-tight">AutoFlow <span className="text-xs text-indigo-500 font-bold">Studio</span> <span className="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-500 font-bold border border-amber-500/30">DEMO</span></h1>
               <p className="text-[10px] text-slate-500">React + Python Automation Engine</p>
             </div>
           </div>
@@ -169,8 +175,8 @@ export default function AutoFlowStudio() {
               <div className="p-3.5 rounded-xl bg-red-50/40 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 flex items-start gap-2.5 text-xs">
                 <span className="w-2 h-2 rounded-full bg-red-500 mt-1"></span>
                 <div>
-                  <p className="font-bold text-red-600 dark:text-red-400">YouTube Data API Unlisted Mode</p>
-                  <p className="text-slate-500 text-[11px]">ভিডিওটি চ্যানেলে সরাসরি আনলিস্টেড (অপ্রকাশিত) হিসেবে আপলোড হবে।</p>
+                  <p className="font-bold text-red-600 dark:text-red-400">YouTube আপলোড — ডেমো মোড</p>
+                  <p className="text-slate-500 text-[11px]">আসল আপলোড এখনো নেই — ব্যাকএন্ড হোস্ট + YouTube API যুক্ত হলে তবেই আপলোড হবে।</p>
                 </div>
               </div>
 
@@ -181,6 +187,9 @@ export default function AutoFlowStudio() {
               >
                 {loading ? 'প্রসেসিং হচ্ছে...' : 'সম্পূর্ণ অটোমেশন শুরু করুন (Create + vidIQ SEO + Upload)'}
               </button>
+              {apiError && (
+                <p className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-semibold">{apiError}</p>
+              )}
             </div>
 
             {/* Right Column (5 cols) */}
@@ -218,14 +227,14 @@ export default function AutoFlowStudio() {
               <div className="p-5 rounded-2xl bg-white dark:bg-[#0f1422] border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="font-bold text-xs text-slate-400 uppercase">vidIQ SEO স্কোরকার্ড</span>
-                  <span className="text-xl font-black text-emerald-500">{vidiqScore} / 100</span>
+                  <span className="text-xl font-black text-emerald-500">{vidiqScore === null ? '—' : `${vidiqScore} / 100`}</span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-                  <div className="bg-emerald-500 h-full" style={{ width: `${vidiqScore}%` }}></div>
+                  <div className="bg-emerald-500 h-full" style={{ width: `${vidiqScore ?? 0}%` }}></div>
                 </div>
                 <div className="flex justify-between text-[11px] text-slate-400">
-                  <span>প্রেডিক্টেড CTR: {predictedCtr}</span>
-                  <span>সার্চ ভলিউম: High (96/100)</span>
+                  <span>প্রেডিক্টেড CTR: {predictedCtr ?? '—'}</span>
+                  <span>DEMO — আসল vidIQ মাপা নয়</span>
                 </div>
               </div>
 
@@ -236,14 +245,18 @@ export default function AutoFlowStudio() {
                   <p className="text-[10px] text-slate-400 font-semibold">ভিডিও টাইটেল:</p>
                   <p className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-semibold mt-1">{ytTitle}</p>
                 </div>
-                <a
-                  href={unlistedUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block text-center py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold transition shadow"
-                >
-                  YouTube Unlisted ভিডিও দেখুন (Open Link)
-                </a>
+                {unlistedUrl ? (
+                  <a
+                    href={unlistedUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block text-center py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold transition shadow"
+                  >
+                    YouTube Unlisted ভিডিও দেখুন (Open Link)
+                  </a>
+                ) : (
+                  <p className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-400 text-center">এখনো আপলোড হয়নি — YouTube আপলোড ডেমো মোডে বন্ধ আছে।</p>
+                )}
               </div>
 
             </div>
