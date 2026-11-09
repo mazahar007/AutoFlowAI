@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
 body {
   font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+}
+.glow-effect {
+  box-shadow: 0 0 60px -15px rgba(99, 102, 241, 0.4);
 }
